@@ -14,7 +14,7 @@ The user requires the following features:
 
 ## Usage
 ### To view code and run locally - 
-Download and run solution. in Visual Studio
+Download and run solution, in Visual Studio. (Developed in VS Community 2015. targetFramework="4.5.2").
 
 ### Demo site -
 http://edstest-env.bb7ygcgfsv.us-east-1.elasticbeanstalk.com/
