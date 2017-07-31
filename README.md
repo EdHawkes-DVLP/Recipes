@@ -1,3 +1,4 @@
+
 ## Requirements -
 
 For this exercise, assume that you will be working with another developer.  One of you will be focusing on the front-end, the other one will be doing the server side.  You get to pick which side of the app you will be working on, but be ready to explain what you would expect your teammate to implement.  
@@ -11,6 +12,7 @@ The user requires the following features:
 * Ability to Save a Recipe
 * Ability to search for a recipe
 
+## Usage
 ### To view code and run locally - 
 Download and run solution. in Visual Studio
 
