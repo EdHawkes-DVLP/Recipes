@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-2.2.3.min.js"></script>
+    <style>
+        body {
+            background-color: beige;
+        }
+        h1 {
+            color: crimson;
+        }
+        .box {
+            border: 2px solid #73AD21;
+            padding: 20px; 
+            width: 200px;
+            height: 150px;    
+            margin-top: 10px;
+        }
+        .RecipesIngredientsTextArea {
+            resize: none;    
+            margin-top: 5px;     
+        }
+        .SearchText {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recipes and Ingredients</h1>
+
+    <div class="box">
+        <b>Search Ingredients</b> 
+        <input type="text" class="SearchText" id="SearchIngredientsInput" placeholder='Ingredient name'  />
+        <button  onclick="SearchIngredients()">Search</button>
+        <textarea class="RecipesIngredientsTextArea" id="IngredientsText" rows="4" cols="25"></textarea> 
+    </div>
+
+    <div class="box">
+        <b>Add Recipe</b>
+        <input type="text" class="SearchText" id="AddRecipeNameInput" placeholder='Recipe name' />
+        <textarea class="RecipesIngredientsTextArea" id="AddRecipeText" rows="4" cols="25"></textarea> 
+        <button onclick="AddRecipe()">Add</button>
+    </div>
+
+    <div class="box">
+        <b>Search Recipes</b>
+        <input type="text" class="SearchText" id="SearchRecipeInput" placeholder='Recipe name' />
+        <button onclick="SearchRecipes()">Search</button>
+        <textarea class="RecipesIngredientsTextArea" id="RecipesText" rows="4" cols="25"></textarea> 
+    </div>
+     
+    <script type="text/javascript">
+        function SearchIngredients() {            
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "api/Ingredient/" +  $("#SearchIngredientsInput").val(),
+                async: false, 
+                success: function (result) {
+                    IngredientsSuccess(result);                   
+                }                 
+            });
+        }
+
+        function IngredientsSuccess(result)
+        {
+            $("#SearchIngredientsInput").val("");
+            $("#IngredientsText").empty();
+            console.info(result);
+                    
+            $.each(result, function (key, value) {
+                $("#IngredientsText").append(value.IngredientName).append('\n');             
+            });
+        }
+       
+        function SearchRecipes() {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "api/Recipe/" + $("#SearchRecipeInput").val(),
+                success: function (result) {
+                    RecipesSuccess(result);
+                }
+            });
+        }
+
+        function RecipesSuccess(result) {             
+            $("#SearchRecipeInput").text("");
+            $("#RecipesText").empty();
+            console.info(result);
+        
+            $.each(result, function (key, value) {
+                $("#RecipesText").append(value.RecipeName).append('\n');
+                $("#RecipesText").append(value.RecipeText);
+                $("#RecipesText").append('\n\n');
+            });
+        }
+
+        function AddRecipe() {
+            var newRecipe = {
+                "Id" : 0,
+                "RecipeName": $("#AddRecipeNameInput").val(),
+                "RecipeText": $("#AddRecipeText").val()
+            }
+
+            $("#AddRecipeNameInput").val("");
+            $("#AddRecipeText").empty();
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "api/Recipe",
+                data: newRecipe,
+                success: function (result) {
+                    console.info(result);                    
+                }
+            });            
+        }
+
+    </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="RecipesContext-Web.config Connection String" description="RecipesContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=RecipesContext-20160614233322; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|RecipesContext-20160614233322.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\HP\\Documents\\DVLP\\C\#\\RecipesAndIngredients\\Recipes\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RecipesContext']/@connectionString" />
+  </parameter>
+</parameters>
